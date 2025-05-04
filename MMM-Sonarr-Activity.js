@@ -265,9 +265,10 @@ Module.register("MMM-Sonarr-Activity", {
         return number < 10 ? '0' + number : number;
     },
 
-    getSeriesPoster: function(seriesId){
-        return this.config.sonarrProtocol + "://" + this.config.sonarrHost + ':' + this.config.sonarrPort 
-            + '/api/MediaCover/' + seriesId + '/poster-250.jpg?apikey=' + this.config.sonarrAPIKey;
+    getSeriesPoster: function (seriesId) {
+        return `${this.config.sonarrProtocol}://${this.config.sonarrHost}:${this.config.sonarrPort}` +
+               `/api/v3/mediacover/${seriesId}/poster-250.jpg?apikey=` +
+               this.config.sonarrAPIKey;
     },
 
     // Override dom generator.
