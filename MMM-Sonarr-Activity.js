@@ -197,7 +197,7 @@ Module.register("MMM-Sonarr-Activity", {
 
     buildApiUrl: function(){
         return this.config.sonarrProtocol + "://" + this.config.sonarrHost + ':' + this.config.sonarrPort 
-        + '/api/history?apikey=' + this.config.sonarrAPIKey + '&pageSize=' + this.config.perPage;
+        + '/api/v3/history?apikey=' + this.config.sonarrAPIKey + '&pageSize=' + this.config.perPage;
     },
 
 
@@ -225,6 +225,7 @@ Module.register("MMM-Sonarr-Activity", {
     },
 
     processActivity: function(data){
+	console.log("Sonarr activity data:", data);
         if( this.config.debug) Log.info( data );
         this.activity = data.records;
 
