@@ -195,11 +195,17 @@ Module.register("MMM-Sonarr-Activity", {
         var self = this;
     },
 
-    buildApiUrl: function(){
-        return this.config.sonarrProtocol + "://" + this.config.sonarrHost + ':' + this.config.sonarrPort 
-        + '/api/v3/history?apikey=' + this.config.sonarrAPIKey + '&pageSize=' + this.config.perPage;
+    buildApiUrl: function () {
+        const { sonarrProtocol, sonarrHost, sonarrPort,
+                sonarrAPIKey, perPage } = this.config;
+    
+        return `${sonarrProtocol}://${sonarrHost}:${sonarrPort}` +
+               `/api/v3/history` +
+               `?pageSize=${perPage}` +
+               `&includeSeries=true` +
+               `&includeEpisode=true` +
+               `&apikey=${sonarrAPIKey}`;
     },
-
 
     getLatestActivity: function(){
         if (this.config.debug) Log.info('Sonarr asking for refresh of activity');
